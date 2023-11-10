@@ -29,7 +29,7 @@ int execute_cmd(char **arr, char **arg, char **env, int sta, int cnt)
 	{
 		if (execve(arg[0], arg, env) == -1)
 		{
-			_error(arr[0], cnt, arg[0]);
+			printErr(arr[0], cnt, arg[0]);
 			free(arg);
 			exit(1);
 		}
