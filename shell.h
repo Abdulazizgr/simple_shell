@@ -20,4 +20,16 @@ int *printErr(char *arg, int cnt, char *cmd);
 char *_itoa(int num, int bas);
 int _strlen(const char *str);
 int _strcmp(char *str1, char *str2);
+
+ /***for tokenizer.c***/
+void handle_exit(char **kalat, char *l);
+char **split_str(char *l, char **env)
+int _atoi(char *a)
+void handle_exit(char **kalat, char *l)
+
+/***for handler_err.c***/
+void handle_signal(int sign)
+int _stat(char **cmd, char **menged)
+int *_error(char *argv, int count, char *args)
+
 #endif
