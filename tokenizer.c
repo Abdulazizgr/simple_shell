@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 void handle_exit(char **kalat, char *l);
 /**
  * split_str - splits str

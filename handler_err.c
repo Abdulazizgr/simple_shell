@@ -7,7 +7,7 @@
 void handle_signal(int sign)
 {
 (void) sign;
-prints("\n$ ");
+printf("\n$ ");
 fflush(stdout);
 }
 /**
@@ -27,7 +27,7 @@ free(menged);
 free(cmd);
 return (0);
 }
-for (kota = 0; menged[kotari] != NULL ; kotari++)
+for (int kotari = 0; menged[kotari] != NULL ; kotari++)
 {
 concat_str = str_concat(menged[kotari], "/");
 new_concat = str_concat(concat_str, cmd[0]);
@@ -59,7 +59,7 @@ char *number;
 number = _itoa(count, 10);
 write(2, argv, _strlen(argv));
 write(2, ": ", 2);
-write(2, number, _strlen(number));num
+write(2, number, _strlen(number));
 write(2, ": ", 2);
 write(2, args, _strlen(args));
 perror(" ");

@@ -23,13 +23,27 @@ int _strcmp(char *str1, char *str2);
 
  /***for tokenizer.c***/
 void handle_exit(char **kalat, char *l);
-char **split_str(char *l, char **env)
-int _atoi(char *a)
-void handle_exit(char **kalat, char *l)
+char **split_str(char *l, char **env);
+int _atoi(char *a);
+void handle_exit(char **kalat, char *l);
 
 /***for handler_err.c***/
-void handle_signal(int sign)
-int _stat(char **cmd, char **menged)
-int *_error(char *argv, int count, char *args)
+void handle_signal(int sign);
+int _stat(char **cmd, char **menged);
+int *_error(char *argv, int count, char *args);
+
+
+/***environ_build.c***/
+int _env_builtin(__attribute((unused)) char **arr_tokens);
+
+
+char *_getenv(const char *na);
+void create_envar(char **env_var, unsigned int envar_len, const char *na, const char *val);
+int _env_set_exists(char *env_var, unsigned int envar_len, const char *na, int overwrite);
+int env_does_not_exists(char *env_var, unsigned int envar_len, unsigned int env_length);
+int _setenv(const char *na, const char *val, int overwrite);
+
+/***print_environ.c***/
+int _print_env(void);
 
 #endif
