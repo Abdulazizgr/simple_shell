@@ -1,107 +1,102 @@
 #include "shell.h"
-void handle_exit(char **kalat, char *l);
+void han_exit(char **tok, char *ln);
 /**
- * split_str - splits str
- * @l: tokenized str
+ * sp_st - splits str
+ * @ln: tokenized str
  * @env: environment var
  * Return: array of tokens
  */
-char **split_str(char *l, char **env)
+char **sp_st(char *ln, char **env)
 {
-	char *tokenized_sentence, *separator = " \t\r\n\a";
-	char **kalat;
-	int max_kalat = 64, kotari = 0;
+	char *tok, *sep = " \t\r\n\a";
+	char **arr;
+	int max_arr = 64, cnt = 0;
 
-	if (l == NULL)
+	if (ln == NULL)
 	{
 		return (0);
 	}
-	kalat = _calloc(sizeof(char *), max_kalat);
-	if (kalat == NULL)
+	arr = _calloc(sizeof(char *), max_arr);
+	if (arr == NULL)
 	{
 		cout("error");
 		exit(EXIT_FAILURE);
 	}
 
-	tokenized_sentence = strtok(l, separator);
-	while (tokenized_sentence != NULL)
+	tok = strtok(ln, sep);
+	while (tok != NULL)
 	{
-		kalat[kotari] = tokenized_sentence;
-		kotari++;
-		tokenized_sentence = strtok(NULL, separator);
+		arr[cnt] = tok;
+		cnt++;
+		tok = strtok(NULL, sep);
 	}
 
-	if (kalat[0] == NULL)
-		kalat[kotari] = "\n";
+	if (arr[0] == NULL)
+		arr[cnt] = "\n";
 
-	if (_strcmp(kalat[0], "exit") == 0)
+	if (_strcmp(arr[0], "exit") == 0)
 	{
-		if (kalat[1] != NULL)
-			handle_exit(kalat, l);
+		if (arr[1] != NULL)
+			han_exit(arr, ln);
 
 		else
-			handle_exit(kalat, l);
+			han_exit(arr, ln);
 	}
-	if ((_strcmp(kalat[0], "env") == 0) && kalat[1] == NULL)
+	if ((_strcmp(arr[0], "env") == 0) && arr[1] == NULL)
 		printenv(env);
 
-	return (kalat);
-
+	return (arr);
 }
 
 /**
- * _atoi - converts char to int
- * @a: char to be converted
+ * _charint - converts char to int
+ * @str: char to be converted
  * Return: int
  */
-
-int _atoi(char *a)
+int _charint(char *str)
 {
-	int result = 0;
+	int res = 0;
 	int sign = 1;
 	int i = 0;
 
-	while (a[i] == ' ')
+	while (str[i] == ' ')
 	{
 		i++;
 	}
 
-	if (a[i] == '-' || a[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		sign = (a[i] == '-') ? -1 : 1;
+		sign = (str[i] == '-') ? -1 : 1;
 		i++;
 	}
 
-	while (a[i] > '\0' && a[i] <= '9')
+	while (str[i] > '\0' && str[i] <= '9')
 	{
-		result = result * 10 + (a[i] - '0');
+		res = res * 10 + (str[i] - '0');
 		i++;
 	}
 
-	return (result * sign);
+	return (res * sign);
 }
 
-
 /**
- * handle_exit - exit handler
- * @kalat:  kalat which is nice
- * @l: line in the mirrori
+ * han_exit - exit handler
+ * @tok:  array of tokens
+ * @ln: line of input
  * Returns: nothing
- *
  */
-
-void handle_exit(char **kalat, char *l)
+void han_exit(char **tok, char *ln)
 {
-	int status = 0;
+	int stat = 0;
 
-	if (kalat[1] != NULL)
+	if (tok[1] != NULL)
 	{
-		status = _atoi(kalat[1]);
-		if (status == 0 && _strcmp(kalat[1], "0") != 0)
-			status = 2;
+		stat = _charint(tok[1]);
+		if (stat == 0 && _strcmp(tok[1], "0") != 0)
+			stat = 2;
 	}
 
-	free(l);
-	free(kalat);
-	exit(status);
+	free(ln);
+	free(tok);
+	exit(stat);
 }
