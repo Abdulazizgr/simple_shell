@@ -1,97 +1,105 @@
 #include "shell.h"
+
 /**
  * _itoa - converts an integer to ASCII
- * @num: number
- * @bas: base
- * Reference: geeksforgeeks
+ * @n: number
+ * @b: base
  * Return: character string
  **/
-char *_itoa(int num, int bas)
+char *_itoa(int n, int b)
 {
-static char *dig = "0123456789abcdef";
-static char buf[50];
-char sig = 0;
-char *ptr;
-unsigned long n = (unsigned long)num;
-if (num < 0)
-{
-n = (unsigned long)(-num);
-sig = '-';
+    static char *d = "0123456789abcdef";
+    static char buf[50];
+    char s = 0;
+    char *p;
+    unsigned long m = (unsigned long)n;
+
+    if (n < 0)
+    {
+        m = (unsigned long)(-n);
+        s = '-';
+    }
+
+    p = &buf[49];
+    *p = '\0';
+
+    do
+    {
+        *--p = d[m % b];
+        m /= b;
+    } while (m != 0);
+
+    if (s)
+        *--p = s;
+
+    return (p);
 }
-ptr = &buf[49];
-*ptr = '\0';
-do {
-*--ptr = dig[n % bas];
-n /= bas;
-} while (n != 0);
-if (sig)
-*--ptr = sig;
-return (ptr);
-}
+
 /**
  * _strlen - returns the length of a string
- * str - short description
- * Description: long desc
- * @str: string to be measured
+ * @s: string to be measured
  * Return: length of string
  */
-int _strlen(const char *str)
+int _strlen(const char *s)
 {
-int length = 0;
-while (str[length] != '\0')
-{
-length++;
-}
-return (length + 1);
+    int l = 0;
+
+    while (s[l] != '\0')
+    {
+        l++;
+    }
+
+    return (l + 1);
 }
 
 /**
  * printenv - prints the current environment
- * @environ: environment variable
+ * @e: environment variable
  */
-void printenv(char **environ)
+void printenv(char **e)
 {
-	int i = 0;
+    int i = 0;
 
-	for (; environ[i] ; i++)
-		_puts(environ[i]);
+    for (; e[i]; i++)
+    {
+        _print(e[i]);
+    }
 }
-
 
 /**
  * search - gets the path to execute commands
- * @environ: Environment variable
- * Return: kalat_path (array of directories containing the command)
- *	or NULL on failure
+ * @e: environment variable
+ * Return: path (array of directories containing the command) or NULL on failure
  **/
-char **search(char **environ)
+char **search(char **e)
 {
-	int position = 0;
-	char **kalat_path;
+    int p = 0;
+    char **pa;
 
-	for (; environ[position] != NULL ; position++)
-	{
-		if (environ[position][0] == 'P' && environ[position][2] == 'T')
-		{
-			kalat_path = _finpath(environ[position]);
-		}
-	}
-	return (kalat_path);
+    for (; e[p] != NULL; p++)
+    {
+        if (e[p][0] == 'P' && e[p][2] == 'T')
+        {
+            pa = _finpath(e[p]);
+        }
+    }
+
+    return (pa);
 }
 
 /**
- *_puts - prints a string
- *@str: A to be printed
- *
- *Return: void
+ * _print - prints a string
+ * @s: string to be printed
+ * Return: void
  */
-void _puts(char *str)
+void _print(char *s)
 {
-	int i;
+    int i;
 
-	for (i = 0 ; str[i] != '\0' ; i++)
-	{
-		_putchar(str[i]);
-	}
-	_putchar('\n');
+    for (i = 0; s[i] != '\0'; i++)
+    {
+        _putchar(s[i]);
+    }
+
+    _putchar('\n');
 }

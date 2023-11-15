@@ -24,7 +24,7 @@ char *str_concat(char *s1, char *s2);
 void *_calloc(unsigned int nmemb, unsigned int size);
 void printenv(char **environ);
 char **search(char **environ);
-void _puts(char *str);
+void _print(char *s);
 char **_finpath(char *fpt);
 char *_strdup(char *str);
 
