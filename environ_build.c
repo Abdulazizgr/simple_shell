@@ -6,12 +6,12 @@
  */
 int _env_builtin(__attribute((unused)) char **arr_tokens)
 {
-int enviroment_index;
-for (enviroment_index = 0; __environ[enviroment_index]; enviroment_index++)
+int env_index;
+for (env_index = 0; __environ[env_index]; env_index++)
 {
-write(STDOUT_FILENO, __environ[enviroment_index],
-strlen(__environ[enviroment_index]));
-write(STDOUT_FILENO, "\n", strlen("\n"));
+write(STDOUT_FILENO, __environ[env_index],
+strlen(__environ[env_index]));
+write(STDOUT_FILENO, "\n", _strlen("\n"));
 }
-return (enviroment_index);
+return (env_index);
 }
