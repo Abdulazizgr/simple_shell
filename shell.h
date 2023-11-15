@@ -20,6 +20,13 @@ int *printErr(char *arg, int cnt, char *cmd);
 char *_itoa(int num, int bas);
 int _strlen(const char *str);
 int _strcmp(char *str1, char *str2);
+char *str_concat(char *s1, char *s2);
+void *_calloc(unsigned int nmemb, unsigned int size);
+void printenv(char **environ);
+char **search(char **environ);
+void _puts(char *str);
+char **_which(char *fpath);
+char *_strdup(char *str);
 
  /***for tokenizer.c***/
 void handle_exit(char **kalat, char *l);

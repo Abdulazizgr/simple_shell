@@ -18,7 +18,7 @@ int main(int ac __attribute__((unused)), char **av, char **env)
 	(void) av;
 	signal(SIGINT, handle_signal);
 
-	while (true)
+	while (1)
 	{
 		prompt();
 		line = user_input();

@@ -7,7 +7,7 @@
 void handle_signal(int sign)
 {
 (void) sign;
-cout("\zizu$ ");
+cout("\nzizu$ ");
 fflush(stdout);
 }
 /**
@@ -27,7 +27,7 @@ free(menged);
 free(cmd);
 return (0);
 }
-for (int kotari = 0; menged[kotari] != NULL ; kotari++)
+for (kotari = 0; menged[kotari] != NULL ; kotari++)
 {
 concat_str = str_concat(menged[kotari], "/");
 new_concat = str_concat(concat_str, cmd[0]);
