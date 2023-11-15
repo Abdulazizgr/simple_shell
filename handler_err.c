@@ -7,7 +7,7 @@
 void handle_signal(int sign)
 {
 (void) sign;
-printf("\n$ ");
+cout("\zizu$ ");
 fflush(stdout);
 }
 /**
