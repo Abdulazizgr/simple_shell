@@ -19,7 +19,7 @@ char **split_str(char *l, char **env)
 	kalat = _calloc(sizeof(char *), max_kalat);
 	if (kalat == NULL)
 	{
-		prints("error");
+		cout("error");
 		exit(EXIT_FAILURE);
 	}
 
