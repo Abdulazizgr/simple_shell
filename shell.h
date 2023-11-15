@@ -45,9 +45,12 @@ int _env_builtin(__attribute((unused)) char **arr_tokens);
 
 
 char *_getenv(const char *na);
-void create_envar(char **env_var, unsigned int envar_len, const char *na, const char *val);
-int _env_set_exists(char *env_var, unsigned int envar_len, const char *na, int overwrite);
-int env_does_not_exists(char *env_var, unsigned int envar_len, unsigned int env_length);
+void create_envar(char **env_var,
+		unsigned int envar_len, const char *na, const char *val);
+int _env_set_exists(char *env_var,
+		unsigned int envar_len, const char *na, int overwrite);
+int env_does_not_exists(char *env_var,
+		unsigned int envar_len, unsigned int env_length);
 int _setenv(const char *na, const char *val, int overwrite);
 
 /***print_environ.c***/

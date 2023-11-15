@@ -1,8 +1,9 @@
 #include "shell.h"
 /**
- * _env_builtin - print environ
- * @arr_tokens: cmd array for tokens
- * Return : 0 for failure 1 for sucess
+ * _env_builtin - Check if a command is an environment builtin
+ * @arr_tokens: The command to check
+ *
+ * Return: 1 if the command is an environment builtin, 0 otherwise
  */
 int _env_builtin(__attribute((unused)) char **arr_tokens)
 {

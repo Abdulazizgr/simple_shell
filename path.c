@@ -1,8 +1,7 @@
 #include "shell.h"
 
 /**
- * _which - identifies the path of the command (fpath)
- * that is being passed to it
+ * _finpath - short description
  * @fpt: the command that is being passed to it
  *
  * Return: an array of directories containing the command or NULL on failure

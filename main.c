@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * main - Simple Shell main function. 
+ * main - Simple Shell main function.
  *          Creates a prompt that reads input,
  *          parses, executes commands,
  *          and waits for another command unless told to exit.
