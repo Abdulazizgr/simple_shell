@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * handle_signal - handle EOF signal
  * @sign: EOF indication
@@ -6,46 +7,53 @@
  */
 void handle_signal(int sign)
 {
-(void) sign;
-cout("\nzizu$ ");
-fflush(stdout);
+  (void) sign;
+  cout("\nzizu$ ");
+  fflush(stdout);
 }
+
 /**
  * _stat - get file status
  * @cmd: array of commands
- * @menged: array of directory paths
+ * @dir: array of directory paths
  * Return: 1 on success
  **/
-int _stat(char **cmd, char **menged)
+int _stat(char **cmd, char **dir)
 {
-char *concat_str = NULL, *new_concat = NULL;
-int kotari;
-struct stat sb;
-if (menged == NULL)
-{
-free(menged);
-free(cmd);
-return (0);
+  char *con = NULL, *new_con = NULL;
+  int ret;
+  struct stat sb;
+
+  if (dir == NULL)
+  {
+    free(dir);
+    free(cmd);
+    return (0);
+  }
+
+  for (ret = 0; dir[ret] != NULL; ret++)
+  {
+    con = str_concat(dir[ret], "/");
+    new_con = str_concat(con, cmd[0]);
+
+    if (stat(new_con, &sb) == 0 && (sb.st_mode & S_IXUSR))
+    {
+      cmd[0] = new_con;
+      free(con);
+      free(dir[0]);
+      free(dir);
+      return (1);
+    }
+
+    free(con);
+    free(new_con);
+  }
+
+  free(dir[0]);
+  free(dir);
+  return (0);
 }
-for (kotari = 0; menged[kotari] != NULL ; kotari++)
-{
-concat_str = str_concat(menged[kotari], "/");
-new_concat = str_concat(concat_str, cmd[0]);
-if (stat(new_concat, &sb) == 0 && (sb.st_mode & S_IXUSR))
-{
-cmd[0] = new_concat;
-free(concat_str);
-free(menged[0]);
-free(menged);
-return (1);
-}
-free(concat_str);
-free(new_concat);
-}
-free(menged[0]);
-free(menged);
-return (0);
-}
+
 /**
  * _error - prints the error output 
  * @argv: name of program
@@ -55,13 +63,13 @@ return (0);
  */
 int *_error(char *argv, int count, char *args)
 {
-char *number;
-number = _itoa(count, 10);
-write(2, argv, _strlen(argv));
-write(2, ": ", 2);
-write(2, number, _strlen(number));
-write(2, ": ", 2);
-write(2, args, _strlen(args));
-perror(" ");
-return (0);
+  char *num;
+  num = _itoa(count, 10);
+  write(2, argv, _strlen(argv));
+  write(2, ": ", 2);
+  write(2, num, _strlen(num));
+  write(2, ": ", 2);
+  write(2, args, _strlen(args));
+  perror(" ");
+  return (0);
 }
