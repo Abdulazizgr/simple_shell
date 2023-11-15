@@ -73,7 +73,7 @@ char **search(char **environ)
 	{
 		if (environ[position][0] == 'P' && environ[position][2] == 'T')
 		{
-			kalat_path = _finpat(environ[position]);
+			kalat_path = _finpath(environ[position]);
 		}
 	}
 	return (kalat_path);

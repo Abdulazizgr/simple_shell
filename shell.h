@@ -25,7 +25,7 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 void printenv(char **environ);
 char **search(char **environ);
 void _puts(char *str);
-char **_which(char *fpath);
+char **_finpath(char *fpt);
 char *_strdup(char *str);
 
  /***for tokenizer.c***/
