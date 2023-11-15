@@ -25,12 +25,12 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 void printenv(char **environ);
 char **search(char **environ);
 void _puts(char *str);
-char **_finpath(char *fpt);
+char **_which(char *fpath);
 char *_strdup(char *str);
 
  /***for tokenizer.c***/
 void handle_exit(char **kalat, char *l);
-char **split_str(char *l, char **env);
+char **sp_st(char *l, char **env);
 int _atoi(char *a);
 void handle_exit(char **kalat, char *l);
 

@@ -3,40 +3,39 @@
 /**
  * _which - identifies the path of the command (fpath)
  * that is being passed to it
- * @fpath: the command that is being passed to it
+ * @fpt: the command that is being passed to it
  *
  * Return: an array of directories containing the command or NULL on failure
  */
-char **_which(char *fpath)
+char **_finpath(char *fpt)
 {
-	int size = 64;
+	int siz = 64;
 	int i = 0;
-	char *copy_path = NULL;
-	char *delim = ":=";
+	char *cpy = NULL;
+	char *del = ":=";
 
-	char **dirs = _calloc(sizeof(char *), size);
-	char *token = NULL;
+	char **drs = _calloc(sizeof(char *), siz);
+	char *tok = NULL;
 
-	if (fpath == NULL)
+	if (fpt == NULL)
 	{
-		free(fpath);
-		return (0);
-	}
-	if (dirs == NULL)
-	{
-		free(fpath);
-		perror("Error allocated memory");
+		free(fpt);
 		return (NULL);
 	}
-	copy_path = _strdup(fpath); /* Copy the fpath string */
-	token = strtok(copy_path, delim); /* Split the string by the delimiter */
-
-	while (token != NULL)
+	if (drs == NULL)
 	{
-		dirs[i] = token;
-		i++;
-		token = strtok(NULL, delim);
+		free(fpt);
+		perror("Error allocating memory");
+		return (NULL);
 	}
-	return (dirs);
-}
+	cpy = _strdup(fpt); /* Copy the fpt string */
+	tok = strtok(cpy, del); /* Split the string by the delimiter */
 
+	while (tok != NULL)
+	{
+		drs[i] = tok;
+		i++;
+		tok = strtok(NULL, del);
+	}
+	return (drs);
+}

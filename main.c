@@ -22,7 +22,7 @@ int main(int ac __attribute__((unused)), char **av, char **env)
 	{
 		prompt();
 		line = user_input();
-		args = split_str(line, env);
+		args = sp_st(line, env);
 		if ((_strcmp(args[0], "\n") != 0) && (_strcmp(args[0], "env") != 0))
 		{
 			kotari += 1;
